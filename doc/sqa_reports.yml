@@ -1,0 +1,6 @@
+Applications:
+    my_first_app:
+        app_types:
+            - MyFirstAppApp
+        content_directory: ${ROOT_DIR}/doc/content
+        log_default: WARNING

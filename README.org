@@ -14,6 +14,7 @@
   3. 分析依次经历 contact、boltload、fix、load 四个步骤，结果保存在 `.odb` 文件。
   4. 运行结束后可根据 `.msg` 与 `.sta` 查看收敛信息，并在 Abaqus Viewer 中查看位移、应力等输出。
 
+
 * 安装和配置 MOOSE
   1. 克隆或下载 MOOSE 框架，参见 [MOOSE 官方指南](https://mooseframework.inl.gov/getting_started/index.html)。
   2. 确认本项目在 `moose-demo` 根目录下能找到 MOOSE，并根据需要设置 `MOOSE_DIR` 环境变量。
@@ -31,13 +32,3 @@
 * 后续工作
   1. 编写更多自动化测试脚本，便于持续集成和验证。
   2. 根据需要扩展自定义 MOOSE 组件，例如用户材料或求解器。
-
-
-* 迁移详细计划
-  1. 阅读 `底板选型/S2-1-250-8-64-5.inp`，记录使用的单元类型、材料参数及载荷方式。
-  2. 使用 `abaqus` 工具或 `meshio` 脚本将 `.inp` 网格转换为 ExodusII (`.e`) 文件，存放在 `doc/mesh` 目录。
-  3. 在 MOOSE 应用中编写与 Abaqus 材料、边界条件相对应的 `Material` 与 `BC` 类。
-  4. 新建 `s2_beam.i` 输入文件，配置 `Mesh`、`Variables`、`Kernels`、`BCs` 等模块并指定转换后的网格。
-  5. 运行 `./run_tests --re s2_beam`，对比其输出与 Abaqus 的 `S2-1-250-8-64-5.odb` 结果，逐步调整模型。
-  6. 将以上过程整理成脚本（如 `scripts/convert.sh`），以便批量迁移其他 Abaqus 项目。
-

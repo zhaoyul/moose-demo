@@ -1,0 +1,26 @@
+# MOOSE 项目迁移指南
+
+本文档提供从 Abaqus 项目迁移到 MOOSE 框架的基本流程。
+
+* 准备工作
+  1. 熟悉原有 Abaqus 输入文件（.inp）和分析流程。
+  2. 在当前仓库中 "底板选型" 目录保存了一个 Abaqus 示例，可作为迁移起点。
+
+* 安装和配置 MOOSE
+  1. 克隆或下载 MOOSE 框架，参见 [MOOSE 官方指南](https://mooseframework.inl.gov/getting_started/index.html)。
+  2. 确认本项目在 `moose-demo` 根目录下能找到 MOOSE，并根据需要设置 `MOOSE_DIR` 环境变量。
+  3. 使用 `make -j4` 编译应用程序。
+
+* 输入文件迁移
+  1. 导出或转换 Abaqus 网格，可通过第三方工具生成 ExodusII 或其他 MOOSE 支持的格式。
+  2. 根据 Abaqus 分析设置，在 MOOSE 输入文件中指定材料、边界条件及求解器参数。
+  3. 逐步将 Abaqus 的载荷及约束转换为 MOOSE 中的对应模块与执行方式。
+
+* 验证与调试
+  1. 运行 `./run_tests` 执行示例测试，确保应用编译和基本功能正常。
+  2. 逐个比较 Abaqus 与 MOOSE 的计算结果，调整材料模型或网格密度等参数以保持一致性。
+
+* 后续工作
+  1. 编写更多自动化测试脚本，便于持续集成和验证。
+  2. 根据需要扩展自定义 MOOSE 组件，例如用户材料或求解器。
+
